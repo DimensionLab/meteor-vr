@@ -1,17 +1,9 @@
-# The Meteor Chef - Base
-A starting point for Meteor apps.
+# MeteorVR
+Web-based, shared (not-yet, WIP), VR experience made with A-frame, React and Meteor.
 
-<table>
-  <tbody>
-    <tr>
-      <th>Base Version</th>
-      <td>v4.4.0</td>
-    </tr>
-    <tr>
-      <th>Meteor Version</th>
-      <td>v1.3.4.1</td>
-    </tr>
-  </tbody>
-</table>
+Working on implementing the ability to join a shared VR scene with your friends. Help WELCOME!
 
-[Read the Documentation](http://themeteorchef.com/base)
+### Something for reference & inspiration
+
+* https://github.com/georational/georational.github.io
+* https://github.com/ngokevin/aframe-firebase-component
