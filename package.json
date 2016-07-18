@@ -1,0 +1,80 @@
+{
+  "name": "meteorvr",
+  "version": "0.1.0",
+  "description": "Web-based shared VR experience with A-frame, React and Meteor.",
+  "scripts": {
+    "start": "meteor --settings settings-development.json",
+    "test": "meteor test --driver-package practicalmeteor:mocha --port 5000",
+    "chimp-watch": "chimp --ddp=http://localhost:3000 --watch --mocha --path=tests",
+    "chimp-test": "chimp --ddp=http://localhost:3000 --mocha --path=tests",
+    "deploy-dev": "cd .deploy/development && mupx deploy",
+    "deploy-prod": "cd .deploy/production && mupx deploy"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "chimp": "^0.34.1",
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.10.2",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-meteor": "^3.5.2",
+    "eslint-plugin-react": "^5.1.1",
+    "faker": "^3.1.0"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "plugins": [
+      "meteor",
+      "react"
+    ],
+    "extends": [
+      "airbnb/base",
+      "plugin:meteor/guide",
+      "plugin:react/recommended"
+    ],
+    "globals": {
+      "server": false,
+      "browser": false,
+      "expect": false
+    },
+    "rules": {
+      "import/no-unresolved": 0,
+      "no-underscore-dangle": [
+        "error",
+        {
+          "allow": [
+            "_id",
+            "_ensureIndex",
+            "_verifyEmailToken",
+            "_resetPasswordToken",
+            "_name"
+          ]
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "aframe": "^0.2.0",
+    "aframe-chartbuilder-component": "^0.1.0",
+    "aframe-extras": "^2.1.0",
+    "aframe-firebase-component": "^1.0.8",
+    "bootstrap": "^3.3.6",
+    "eslint": "^2.13.1",
+    "eslint-plugin-jsx-a11y": "^1.5.3",
+    "eslint-plugin-react": "^5.2.2",
+    "jquery": "^2.2.4",
+    "jquery-validation": "^1.15.0",
+    "mobx": "^2.3.5",
+    "react": "^15.2.0",
+    "react-addons-pure-render-mixin": "^15.0.2",
+    "react-bootstrap": "^0.29.5",
+    "react-dom": "^15.2.0",
+    "react-komposer": "^1.8.0",
+    "react-router": "^2.5.2",
+    "react-router-bootstrap": "^0.23.0"
+  }
+}
