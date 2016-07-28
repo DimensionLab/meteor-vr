@@ -104,7 +104,7 @@ export default class VR extends React.Component {
   }
 
   goHome() {
-    browserHistory.push('/');
+    browserHistory.push('/meteor-vr');
   }
 
   goToTwitter() {

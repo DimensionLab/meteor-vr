@@ -15,7 +15,7 @@ import { Signup } from '../../ui/pages/signup';
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
     replace({
-      pathname: '/login',
+      pathname: '/meteor-vr/login',
       state: { nextPathname: nextState.location.pathname },
     });
   }
@@ -24,15 +24,15 @@ const requireAuth = (nextState, replace) => {
 Meteor.startup(() => {
   render(
     <Router history={ browserHistory }>
-      <Route path="/" component={ App }>
+      <Route path="/meteor-vr" component={ App }>
         <IndexRoute name="index" component={ Index } onEnter={ requireAuth } />
-        <Route name="documents" path="/documents" component={ Documents } onEnter={ requireAuth } />
-        <Route name="login" path="/login" component={ Login } />
-        <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
-        <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
-        <Route name="signup" path="/signup" component={ Signup } />
+        <Route name="documents" path="/meteor-vr/documents" component={ Documents } onEnter={ requireAuth } />
+        <Route name="login" path="/meteor-vr/login" component={ Login } />
+        <Route name="recover-password" path="/meteor-vr/recover-password" component={ RecoverPassword } />
+        <Route name="reset-password" path="/meteor-vr/reset-password/:token" component={ ResetPassword } />
+        <Route name="signup" path="/meteor-vr/signup" component={ Signup } />
       </Route>
-      <Route name="vr" path="/vr" component={ MainSceneVR } onEnter={ requireAuth } />
+      <Route name="vr" path="/meteor-vr/vr" component={ MainSceneVR } onEnter={ requireAuth } />
       <Route path="*" component={ NotFound } />
     </Router>,
     document.getElementById('react-root')

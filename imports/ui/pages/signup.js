@@ -61,7 +61,7 @@ export class Signup extends React.Component {
           </FormGroup>
           <Button type="submit" bsStyle="success">Sign Up</Button>
         </form>
-        <p>Already have an account? <Link to="/login">Log In</Link>.</p>
+        <p>Already have an account? <Link to="/meteor-vr/login">Log In</Link>.</p>
       </Col>
     </Row>;
   }

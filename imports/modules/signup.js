@@ -25,7 +25,7 @@ const signUp = () => {
     if (error) {
       Bert.alert(error.reason, 'danger');
     } else {
-      browserHistory.push('/');
+      browserHistory.push('/meteor-vr');
       Bert.alert('Welcome!', 'success');
     }
   });

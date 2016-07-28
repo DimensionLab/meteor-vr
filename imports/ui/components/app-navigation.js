@@ -13,7 +13,7 @@ export class AppNavigation extends React.Component {
     return <Navbar>
       <Navbar.Header>
         <Navbar.Brand>
-          <Link to="/">Meteor VR</Link>
+          <Link to="/meteor-vr">Meteor VR</Link>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>

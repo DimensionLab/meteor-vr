@@ -4,7 +4,7 @@ import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 import { Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 
-const handleLogout = () => Meteor.logout(() => browserHistory.push('/login'));
+const handleLogout = () => Meteor.logout(() => browserHistory.push('/meteor-vr/login'));
 
 const userName = () => {
   const user = Meteor.user();
@@ -15,14 +15,14 @@ const userName = () => {
 export const AuthenticatedNavigation = () => (
   <div>
     <Nav>
-      <IndexLinkContainer to="/">
-        <NavItem eventKey={ 1 } href="/">Index</NavItem>
+      <IndexLinkContainer to="/meteor-vr">
+        <NavItem eventKey={ 1 } href="/meteor-vr">Index</NavItem>
       </IndexLinkContainer>
-      <LinkContainer to="/documents">
+      <LinkContainer to="/meteor-vr/documents">
         <NavItem eventKey={ 2 } href="/documents">Documents</NavItem>
       </LinkContainer>
-      <LinkContainer to="/vr">
-        <NavItem eventKey={ 3 } href="/vr">Virtual Reality</NavItem>
+      <LinkContainer to="/meteor-vr/vr">
+        <NavItem eventKey={ 3 } href="/meteor-vr/vr">Virtual Reality</NavItem>
       </LinkContainer>
     </Nav>
     <Nav pullRight>
