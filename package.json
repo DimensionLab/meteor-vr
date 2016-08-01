@@ -60,8 +60,9 @@
   "dependencies": {
     "aframe": "^0.2.0",
     "aframe-chartbuilder-component": "^0.1.0",
-    "aframe-extras": "^2.1.0",
+    "aframe-extras": "^1.17.0",
     "aframe-firebase-component": "^1.0.8",
+    "aframe-react": "^2.0.0",
     "bootstrap": "^3.3.6",
     "eslint": "^2.13.1",
     "eslint-plugin-jsx-a11y": "^1.5.3",
@@ -69,10 +70,10 @@
     "jquery": "^2.2.4",
     "jquery-validation": "^1.15.0",
     "mobx": "^2.3.5",
-    "react": "^15.2.0",
+    "react": "^15.2.1",
     "react-addons-pure-render-mixin": "^15.0.2",
     "react-bootstrap": "^0.29.5",
-    "react-dom": "^15.2.0",
+    "react-dom": "^15.2.1",
     "react-komposer": "^1.8.0",
     "react-router": "^2.5.2",
     "react-router-bootstrap": "^0.23.0"

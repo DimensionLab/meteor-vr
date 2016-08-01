@@ -1,20 +1,45 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import 'aframe';
 import { browserHistory } from 'react-router';
+import { composeWithTracker } from 'react-komposer';
+import { Meteor } from 'meteor/meteor';
+// import extras from 'aframe-extras';
+// extras.registerAll();
+// import { Session } from 'meteor/session';
+import { updatePosition } from '../../api/users/methods.js';
 
-export default class VR extends React.Component {
+class VR extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       materialColor: 'blue',
+      position: '5 -2 -12',
+      newPosition: null,
+      newRotation: null,
+      updating: false,
     };
   }
 
+  componentDidMount() {
+    const self = this;
+
+    document.querySelector('#avatar').addEventListener('componentchanged', (evt) => {
+      if (evt.detail.name === 'position' && evt.detail.oldData !== evt.detail.newData) {
+        self.setState({ newPosition: evt.detail.newData, updating: true });
+        self.setState({ newRotation: document.querySelector('#avatar').getAttribute('rotation'), updating: true });
+      } else {
+        self.setState({ updating: false });
+      }
+    });
+  }
+
   render() {
-    const { materialColor } = this.state;
+    const { materialColor, position, newPosition, newRotation } = this.state;
+    const { user } = this.props;
+
     return (
-      <a-scene physics fog="type: linear; color: #AAB; far: 30; near: 0">
+      <a-scene meteor="channel: hello!!!; interval: 10;" physics fog="type: linear; color: #AAB; far: 30; near: 0">
 
         <a-assets timeout='5000'>
           <a-asset-item id="tree1" src="models/lowpoly/Models/Tree Type1 04.dae"></a-asset-item>
@@ -29,14 +54,19 @@ export default class VR extends React.Component {
           </a-mixin>
         </a-assets>
 
-        <a-camera
+        <a-entity
+          camera
           look-controls
           wasd-controls
           id="avatar"
           mixin="avatar-head"
-          position="-1 2 -5">
+          position={user && user.position ? `${user.position.x} ${user.position.y} ${user.position.z}` : '-1 2 -5'}
+          rotation={user && user.rotation ? `${user.rotation.x} ${user.rotation.y} ${user.rotation.z}` : '0 0 0'}
+          jump-ability="enableDoubleJump: true; distance: 2;"
+          onChange={(e) => this.handlePlayer(e)}
+        >
           <a-cursor color="#4CC3D9" fuse="true" timeout="2000"></a-cursor>
-        </a-camera>
+        </a-entity>
 
         <a-plane rotation="-90 0 0" width="50" height="50" color="#7BC8A4"></a-plane>
 
@@ -60,8 +90,10 @@ export default class VR extends React.Component {
 
         <a-collada-model
           src="#tree1"
-          position="5 -2 -12"
-          scale="1.8 1.8 1.8">
+          position={position}
+          scale="1.8 1.8 1.8"
+          onClick={() => this.savePosition(newPosition, newRotation)}
+        >
         </a-collada-model>
 
         <a-entity
@@ -114,8 +146,26 @@ export default class VR extends React.Component {
   goToGithub() {
     window.location = 'https://github.com/michaltakac';
   }
+
+  changePosition() {
+    this.setState({ position: '8 -2 -10' });
+  }
+
+  savePosition(newPosition, newRotation) {
+    updatePosition.call({ position: newPosition, rotation: newRotation }, (error) => {
+      if (error) {
+        console.log(error.message);
+      }
+    });
+  }
 }
 
 VR.propTypes = {
-
+  user: PropTypes.object,
 };
+
+const composer = (props, onData) => {
+  onData(null, { user: Meteor.user() });
+};
+
+export default composeWithTracker(composer, {}, {}, { pure: false })(VR);
